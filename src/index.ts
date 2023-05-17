@@ -1,7 +1,3 @@
-export class N {
-  private readonly user: any
+import { Server } from './shared/infra/http/app'
 
-  constructor (user: any) {
-    this.user = user
-  }
-}
+new Server().start()

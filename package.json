@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "rimraf dist && tsc",
-    "dev": "NODE_ENV=dev",
+    "dev": "cross-env NODE_ENV=development APP_PORT=3000 --exec 'ts-node' src/index.ts",
+    "prod": "cross-env NODE_ENV=production APP_PORT=3001 node dist/index.js",
     "lint": "eslint --ext .ts .",
     "lint:fix": "eslint --fix --ext .ts ./src ./tests",
     "test": "cross-env NODE_ENV=test jest"
