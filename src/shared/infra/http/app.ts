@@ -6,6 +6,7 @@ import helmet from 'helmet'
 import { v1Router } from './api/v1'
 import { envs } from './config'
 import { errorMiddleware } from './middlewares/errorHandler'
+import { invalidRouteHandler } from './middlewares/invalidRouteHandler'
 
 const origin = {
   origin: envs.IS_PROD ? 'https://mydomain.com' : '*'
@@ -20,6 +21,8 @@ export class Server {
 
     this.configRoutes()
 
+    this.configInvalidRouteHandler()
+
     this.initializeErrorHandling()
   }
 
@@ -33,6 +36,10 @@ export class Server {
 
   private configRoutes (): void {
     this.app.use('/api/v1', v1Router)
+  }
+
+  private configInvalidRouteHandler (): void {
+    this.app.use(invalidRouteHandler)
   }
 
   private initializeErrorHandling (): void {
