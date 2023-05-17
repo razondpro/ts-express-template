@@ -17,8 +17,17 @@
   },
   "keywords": [
     "typescript",
+    "express",
+    "nodejs",
+    "template",
+    "starter",
+    "starter-template",
+    "clean-architecture",
+    "backend",
+    "backend-template",
     "eslint",
-    "jest"
+    "microservice",
+    "microservice-template"
   ],
   "author": "Razon Hazi Begum",
   "license": "ISC",
