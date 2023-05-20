@@ -17,7 +17,6 @@ COPY --chown=node:node --from=build /usr/src/app/package*.json ./
 COPY --chown=node:node --from=build /usr/src/app/ ./node_modules
 
 FROM base AS development
-VOLUME /usr/src/app
 COPY --chown=node:node --from=build /usr/src/app ./
 CMD ["dumb-init", "npm", "run", "dev"]
 
