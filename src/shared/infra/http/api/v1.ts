@@ -4,7 +4,7 @@ import { HttpStatusCode } from '../HttpStatusCode'
 const v1Router = express.Router()
 
 v1Router.get('/healthcheck', (req: Request, res: Response) => {
-  res.status(HttpStatusCode.OK).json({ message: 'service running ok' })
+  res.status(HttpStatusCode.OK).json({ message: 'service running okey makey' })
 })
 
 v1Router.use('/users', userRouter)

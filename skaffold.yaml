@@ -1,0 +1,21 @@
+apiVersion: skaffold/v4beta5
+kind: Config
+metadata:
+  name: ts-express-template
+build:
+  local:
+    push: false
+  artifacts:
+    - image: razondpro/ts-express-prod
+      context: .
+      docker:
+        dockerfile: Dockerfile.development
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+manifests:
+  rawYaml:
+    - k8s/cluster-ip-service.yaml
+    - k8s/deployment.yaml
+    - k8s/node-port-service.yaml

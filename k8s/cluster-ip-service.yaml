@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-express-cluster-ip-srv
+spec:
+  selector:
+    app: ts-express
+  ports:
+    - name: ts-express-cluster-ip
+      port: 4000
+      targetPort: 3000
+
+
+

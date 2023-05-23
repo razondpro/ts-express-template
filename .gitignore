@@ -3,4 +3,3 @@ coverage
 dist
 .env
 **/.DS_Store
-k8s

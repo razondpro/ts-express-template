@@ -12,16 +12,18 @@ RUN apk update \
     && apk add --no-cache dumb-init \
     && rm -rf /var/cache/apk/*
 WORKDIR /usr/src/app
-USER node
-COPY --chown=node:node --from=build /usr/src/app/package*.json ./
-COPY --chown=node:node --from=build /usr/src/app/ ./node_modules
 
 FROM base AS development
-COPY --chown=node:node --from=build /usr/src/app ./
+COPY --from=build /usr/src/app/package*.json ./
+COPY --from=build /usr/src/app/ ./node_modules
+COPY --from=build /usr/src/app ./
 CMD ["dumb-init", "npm", "run", "dev"]
 
 FROM base AS production
 ENV NODE_ENV production
+USER node
+COPY --chown=node:node --from=build /usr/src/app/package*.json ./
+COPY --chown=node:node --from=build /usr/src/app/ ./node_modules
 COPY --chown=node:node --from=build /usr/src/app/dist ./dist 
 RUN npm prune --production
 CMD ["dumb-init", "node", "dist/index.js"]
